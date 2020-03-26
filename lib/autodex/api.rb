@@ -12,8 +12,8 @@ class Autodex::API
             auto_shop_hash = {
                 :name => a["name"]
                 :phone_number => a["phone_number"]
-                :available_services => a["available_services"]
                 :address => a["address"]
+                :service_offerings => a["service_offerings"]
                 :rating => a["rating"]
                 :price_list => a["price_list"]
             }
@@ -25,8 +25,14 @@ class Autodex::API
         @@all 
     end 
 # displaying different auto shops without any dups
-    def get_services 
-        auto_shops.collect{|a| a.available_services}.flatten.uniq
+    def get_shops 
+        auto_shops.collect{|a| a.service_offerings}.flatten.uniq
+    end 
+
+# compares to user input as an interger to find an auto shop that matches the instance
+    def get_auto_shops
+        service.input = self.get_shops[num-1]
+        auto_shops.select {|a| a.shop.include?(shop_input)}
     end 
 
 end 
