@@ -3,8 +3,8 @@ class Autodex::API
     attr_reader :auto_shops
 
     def initialize
-        key = tqSyDkFba2SfKtjvndYbWWbkNgtTBFktPlzORTiyo93hPhi_UCe0NpDftdUsWNHiAycLggnljP8eD7tm0112AOItGLzHw6-zpmH8p7gdX_svtCuOuPRYETi38PN7XnYx
-        url "https://api.yelp.com/v3/businesses/search?term=auto-shop&location=Corpus-Christi&limit=25"
+        key = "tqSyDkFba2SfKtjvndYbWWbkNgtTBFktPlzORTiyo93hPhi_UCe0NpDftdUsWNHiAycLggnljP8eD7tm0112AOItGLzHw6-zpmH8p7gdX_svtCuOuPRYETi38PN7XnYx"
+        url = "https://api.yelp.com/v3/businesses/search?term=auto-shop&location=Corpus-Christi&limit=25"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{key}"})
         response.parsed_response
         @auto_shops = response ["businesses"].collect do |a|
@@ -30,9 +30,9 @@ class Autodex::API
     end 
 
 # compares to user input as an interger to find an auto shop that matches the instance
-    def get_auto_shops
-        shop.input = self.get_shops[num-1]
-        auto_shops.select {|a| a.shop.include?(shop_input)}
+    def get_auto_shops(num)
+        shop_input = self.get_shops[num-1]
+        auto_shops.select {|a| a.name.include?(shop_input)}
     end 
 
 end 
