@@ -34,7 +34,7 @@ class Autodex::CLi
         REST
         input = gets.strip.downcase
         if valid?(input, @shop)
-            display_auto_shops(input.to_i)
+            display_details(input.to_i)
             puts <<-REST 
             "To learn more, enter the number for the auto shop you want."
             REST
@@ -52,19 +52,12 @@ class Autodex::CLi
             puts <<-REST 
             #{idx}. #{a.name}
             REST
-            puts 
-            "Name: #{a.name},
-            Phone number: #{a.phone_number},
-            Service Offerings: #{a.service_offerings},
-            Address: #{a.address},
-            Rating: #{a.rating} of 5,
-            Price list: #{a.price_list}"
         end 
     end 
 
     def return_details
         puts <<-REST 
-        "Please enter a valid auto shop number"
+        Please enter a valid auto shop number
         REST
         a = gets.chomp 
         if valid?(a, @auto_shop)
@@ -75,15 +68,14 @@ class Autodex::CLi
     end 
 
     def display_details(input)
-        a = @auto_shop[input-1]
+        a = Autodex::Auto_shop.all[input-1]
 
-        puts  
-        "Name: #{a.name},
-        Phone number: #{a.phone_number},
-        Service Offerings: #{a.service_offerings},
+        puts  <<-REST
+        Name: #{a.name},
+        Phone: #{a.phone_number},
         Address: #{a.address},
         Rating: #{a.rating} of 5,
-        Price list: #{a.price_list}"
+        REST
                 
     end 
 
@@ -111,5 +103,3 @@ class Autodex::CLi
     end 
 end  
 
-
-    

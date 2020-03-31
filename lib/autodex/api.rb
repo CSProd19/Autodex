@@ -7,15 +7,13 @@ class Autodex::API
         url = "https://api.yelp.com/v3/businesses/search?term=auto-shop&location=Corpus-Christi&limit=25"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{key}"})
         response.parsed_response
-        @auto_shops = response ["businesses"].collect do |a|
+        @auto_shops = response ["businesses"].collect do |a|  
 
             auto_shop_hash = {
                 :name => a["name"],
                 :phone_number => a["phone_number"],
-                :address => a["address"],
-                :service_offerings => a["service_offerings"],
-                :rating => a["rating"],
-                :price_list => a["price_list"]
+                :address => a["location"]["display_address"].join(", "),
+                :rating => a["rating"]
             }
             Autodex::Auto_shop.new(auto_shop_hash)
         end 
