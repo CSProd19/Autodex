@@ -1,8 +1,6 @@
 # Autodex
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/autodex`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome! The Ruby gem I created parses the Yelp API to gather some information about the local auto shops in Corpus Christi, Tx. It takes user input to bring back 1-25 different auto shops. According to the user input, it will then bring back the details of that specific auto shop. 
 
 ## Installation
 
@@ -22,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start the program, you need to run 'bin/autodex' in your terminal. There will be a numbered list on local auto shops. It will prompt you to enter a number. According to which auto shop number you choose, the details for the chosen auto shop, will return. It will also prompt you to enter another number according to that same list of auto shops, if you'd like. According to the users input it will return the details of the chosen auto shop as well as a 'yes' or 'no' question to restart from the beginning or 'end' the program. The user can input 'end' at anytime to exit the program.
+
 
 ## Development
 
