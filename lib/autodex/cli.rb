@@ -16,7 +16,7 @@ class Autodex::CLi
         return_details
         last_hurrah
     end 
-
+#returns all auto shops as an index starting with the number 1
     def display_shop_choices
         @shop = api.get_shops.each.with_index(1) do |shop, idx|
             puts <<-REST 
@@ -24,7 +24,7 @@ class Autodex::CLi
             REST
         end 
     end 
-
+#this method expects an input to display details of each auto shop according to the users input then returns those details or the else statement runs
     def input_shop_choice
         puts <<-REST 
         "Please enter a number to learn more about an auto shop."
@@ -46,15 +46,7 @@ class Autodex::CLi
             beginning 
         end 
     end 
-
-    # def display_auto_shops(input)
-    #     @auto_shop = api.get_auto_shops(input).each.with_index(1) do |a, idx|
-    #         puts <<-REST 
-    #         #{idx}. #{a.name}
-    #         REST
-    #     end 
-    # end 
-
+#when users input an auto shop number to display details 
     def return_details
         puts <<-REST 
         Please enter a valid auto shop number
@@ -66,7 +58,7 @@ class Autodex::CLi
             return_details 
         end 
     end 
-
+#returns the auto shop hash details
     def display_details(input)
         a = Autodex::Auto_shop.all[input-1]
 

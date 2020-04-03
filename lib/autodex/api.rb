@@ -18,7 +18,7 @@ class Autodex::API
             Autodex::Auto_shop.new(auto_shop_hash)
         end 
     end 
-
+#this is where it saves within
     def self.all 
         @@all 
     end 
