@@ -6,12 +6,12 @@ class Autodex::API
         key = "tqSyDkFba2SfKtjvndYbWWbkNgtTBFktPlzORTiyo93hPhi_UCe0NpDftdUsWNHiAycLggnljP8eD7tm0112AOItGLzHw6-zpmH8p7gdX_svtCuOuPRYETi38PN7XnYx"
         url = "https://api.yelp.com/v3/businesses/search?term=auto-shop&location=Corpus-Christi&limit=25"
         response = HTTParty.get(url, headers: {'Authorization' => "Bearer #{key}"})
-        response.parsed_response
+        response.parsed_response 
         @auto_shops = response ["businesses"].collect do |a|  
 
             auto_shop_hash = {
                 :name => a["name"],
-                :phone_number => a["phone_number"],
+                :phone_number => a["display_phone"],
                 :address => a["location"]["display_address"].join(", "),
                 :rating => a["rating"]
             }

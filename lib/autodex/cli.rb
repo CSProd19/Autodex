@@ -47,20 +47,20 @@ class Autodex::CLi
         end 
     end 
 
-    def display_auto_shops(input)
-        @auto_shop = api.get_auto_shops(input).each.with_index(1) do |a, idx|
-            puts <<-REST 
-            #{idx}. #{a.name}
-            REST
-        end 
-    end 
+    # def display_auto_shops(input)
+    #     @auto_shop = api.get_auto_shops(input).each.with_index(1) do |a, idx|
+    #         puts <<-REST 
+    #         #{idx}. #{a.name}
+    #         REST
+    #     end 
+    # end 
 
     def return_details
         puts <<-REST 
         Please enter a valid auto shop number
         REST
         a = gets.chomp 
-        if valid?(a, @auto_shop)
+        if valid?(a, @shop)
             display_details(a.to_i)
         else 
             return_details 
