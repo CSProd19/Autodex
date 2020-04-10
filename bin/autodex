@@ -3,4 +3,8 @@
 require "./lib/environment"
 #require "bundler/setup"
 
+
+
 Autodex::CLi.new.call
+
+

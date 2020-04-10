@@ -5,7 +5,7 @@ class Autodex::CLi
     def call 
         @api = Autodex::API.new 
         puts <<-REST 
-        "Welcome to Autodex! Where you can find your local mechanic!"
+        Welcome to Autodex! Where you can find your local mechanic!
         REST
         beginning
     end 
@@ -27,25 +27,31 @@ class Autodex::CLi
 #this method expects an input to display details of each auto shop according to the users input then returns those details or the else statement runs
     def input_shop_choice
         puts <<-REST 
-        "Please enter a number to learn more about an auto shop."
+        Please enter a number to learn more about an auto shop.
         REST
         puts <<-REST 
-        "Please enter 'End' to exit"
+        Please enter 'End' to exit
         REST
-        input = gets.strip.downcase
-        if valid?(input, @shop)
+        input = gets.strip
+        if valid?(input.downcase, @shop)
             display_details(input.to_i)
             puts <<-REST 
-            "To learn more, enter the number for the auto shop you want."
+            To learn more, enter the number for the auto shop you want.
             REST
+        elsif (list = Autodex::API.new.search_auto_shops(input)) && !list.empty?   # if I found some shops
+            puts "I found the following shops:"
+            list.each do |shop|
+                puts shop.name
+            end
         else 
             puts <<-REST 
-            "I'm sorry. Please pick another auto shop."
+            I'm sorry. Please pick another auto shop.
             REST
             sleep(2)
             beginning 
         end 
     end 
+
 #when users input an auto shop number to display details 
     def return_details
         puts <<-REST 
@@ -80,12 +86,16 @@ class Autodex::CLi
 
     def last_hurrah
         puts <<-REST 
-        "Would you like to pick another shop? Yes or No"
+        Would you like to pick another shop? Yes or No
         REST
-        if gets.chomp.downcase == "yes"
+        input = gets.chomp.downcase
+        if input == "yes"
             beginning
-        else
+        elsif input == "no"
            goodbye
+        else
+            puts "I didn't quite catch that."
+            last_hurrah
         end
     end 
 
